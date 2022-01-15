@@ -2,11 +2,11 @@
   "name": "server-uno",
   "version": "1.0.0",
   "description": "Aprendiendo sobre NPM y creando mi primer servidor",
-  "main": "index_express.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index_express.js",
-    "start": "node index_express.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [
     "NPM",

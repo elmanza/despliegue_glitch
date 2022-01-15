@@ -1,15 +1,26 @@
-const http = require("http");
+const express = require("express");
 const moment = require("moment");
-const PORT = 3006;
-const server = http.createServer((req, res)=>{
-    let response = "Mensaje por defecto";
-    let hora_actual =   6; //moment().format("HH");
-    if(  hora_actual >= 6 && hora_actual < 12){ response = "Muy buenos días!"; }
-    else if( hora_actual >= 12 && hora_actual < 19 ) { response = "Buenas tardes"; }
-    else{response = "Buenas noches"; }
-    res.end(`SALUDOS --> ${response}`);
+const app = express();
+const PORT = 3007;
+let contador = 0;
+app.get("/", (req, res, next)=>{
+    res.send(`<h1 style="color:blue">Hola bienvenidos a su clase de Backend</h1>`);
 })
 
-server.listen(PORT, ()=>{
-    console.log(`Server on http://localhost:${PORT}`)
+
+app.get("/visitas", (req, res, next)=>{
+    contador++;
+    res.send(`Han visitado esta página ${contador} veces`);
 })
+
+app.get("/fyh", (req, res, next)=>{
+    res.json({fyh: moment().format("DD/MM/YYYY HH:mm:SS")});
+})
+
+
+
+const server = app.listen(PORT, ()=>{
+    console.log(`Server on http://localhost:${PORT}`);
+})
+
+server.on("error", error => console.log(error))
